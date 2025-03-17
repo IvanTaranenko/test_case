@@ -26,7 +26,9 @@ class OrderProductResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
+                TextColumn::make('id')->label('ID')->sortable(),
                 TextColumn::make('order.id')->label('Order ID')->sortable(),
                 TextColumn::make('product.name')->label('Product')->sortable(),
                 TextColumn::make('quantity')->label('Quantity')->sortable(),

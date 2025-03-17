@@ -53,7 +53,7 @@ php artisan serve
 
 Your application will be accessible at http://127.0.0.1:8000.
 
-7. Process the Queue
+7. Process the Queue  - DON'T NEED THIS (didn't have time to implement)
    In a separate terminal window, run the queue worker to process queued jobs:
 
 ```bash
@@ -69,3 +69,11 @@ Use the following credentials:
 
 Email: admin@admin.com
 Password: adminadmin
+
+
+
+TODO:: 
+redirect after checkout 
+user can decrease to 0 and should back to main page
+session messages
+job message

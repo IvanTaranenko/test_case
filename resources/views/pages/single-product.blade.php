@@ -58,6 +58,15 @@
                 </div>
             </div>
         </div>
+        <!-- Cart Icon and Quantity -->
+        <div class="absolute top-4 right-4 flex items-center space-x-2">
+            <a href="/cart" class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-blue-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18l-1.5 9H4.5L3 3zM3 13h18M3 17h18" />
+                </svg>
+                <span id="cart-quantity" class="absolute top-0 right-0 rounded-full bg-red-500 text-white text-xs px-2 py-1">{{ session('cart_quantity', 0) }}</span>
+            </a>
+        </div>
     </div>
 
     <script>
@@ -82,7 +91,6 @@
 
                         document.getElementById('cart-quantity').innerText = currentQuantity;
 
-                        // Переход в корзину
                         window.location.href = '/cart';
                     }
                 })
@@ -90,5 +98,11 @@
                     console.error('Error adding to cart:', error);
                 });
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let cartQuantity = localStorage.getItem('cart_quantity') || '0';
+            document.getElementById('cart-quantity').innerText = cartQuantity;
+        });
     </script>
+
 @endsection

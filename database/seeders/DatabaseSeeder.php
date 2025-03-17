@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => Hash::make('adminadmin'),
         ]);
-        Product::factory(5)->create();
+        Product::factory(20)->create();
         ProductAttribute::factory(5)->create();
         Order::factory(5)->create();
         OrderProduct::factory(5)->create();

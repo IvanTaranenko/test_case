@@ -7,3 +7,11 @@
     <li>Payment Method: {{ $order->payment_method }}</li>
     <li>Delivery Method: {{ $order->delivery_method }}</li>
 </ul>
+<h3>Products in your order:</h3>
+<ul>
+    @foreach($products as $product)
+        <li>
+            {{ $product->name }} (Quantity: {{ $product->pivot->quantity }}) - ${{ $product->pivot->price }}
+        </li>
+    @endforeach
+</ul>

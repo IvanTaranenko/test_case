@@ -4,7 +4,14 @@
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6">Your Cart</h1>
 
-        @if (session('cart_quantity') && session('cart_quantity') > 0)
+        @if (session('message'))
+            <div class="bg-red-100 text-red-800 p-4 mb-4 rounded-md">
+                {{ session('message') }}
+            </div>
+        @endif
+
+
+    @if (session('cart_quantity') && session('cart_quantity') > 0)
             <div class="mb-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     @foreach($cart as $product)
@@ -36,31 +43,30 @@
                 </div>
             </div>
 
-            @if (session('cart_quantity') && session('cart_quantity') > 0)
-                <div class="mt-6">
-                    <p class="text-xl">Total Quantity: {{ session('cart_quantity') }}</p>
-                </div>
+            <div class="mt-6">
+                <p class="text-xl">Total Quantity: {{ session('cart_quantity') }}</p>
+            </div>
 
-                <div class="mt-4 flex space-x-4">
-                    <a href="{{ route('cart.checkout') }}"
-                       class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
-                        Checkout
-                    </a>
+            <div class="mt-4 flex space-x-4">
+                <a href="{{ route('cart.checkout') }}"
+                   class="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+                    Checkout
+                </a>
 
-                    <a href="{{ route('products.index') }}"
-                       class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
-                        &larr; Return Back
-                    </a>
-                </div>
-            @else
-                <div class="mt-4">
-                    <a href="{{ route('products.index') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
-                        &larr; Return Back
-                    </a>
-                </div>
-                <p class="text-xl">Your cart is empty.</p>
-            @endif
+                <a href="{{ route('products.index') }}"
+                   class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                    &larr; Return Back
+                </a>
+            </div>
 
+        @else
+            <div class="mt-4">
+                <a href="{{ route('products.index') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+                    &larr; Return Back
+                </a>
+            </div>
+            <p class="text-xl">Your cart is empty.</p>
         @endif
+
     </div>
 @endsection

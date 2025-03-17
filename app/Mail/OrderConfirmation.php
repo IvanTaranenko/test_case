@@ -16,14 +16,17 @@ class OrderConfirmation extends Mailable
 
     public $order;
 
+    public $products;
+
     public $recipientType;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Order $order, $recipientType = 'customer')
+    public function __construct(Order $order, $products, $recipientType = 'customer')
     {
         $this->order = $order;
+        $this->products = $products;
         $this->recipientType = $recipientType;
     }
 
@@ -48,6 +51,8 @@ class OrderConfirmation extends Mailable
                 view: 'emails.customer_order_confirmation',
                 with: [
                     'order' => $this->order,
+                    'products' => $this->products,
+
                 ],
             );
         } else {
@@ -55,6 +60,8 @@ class OrderConfirmation extends Mailable
                 view: 'emails.admin_order_notification',
                 with: [
                     'order' => $this->order,
+                    'products' => $this->products,
+
                 ],
             );
         }

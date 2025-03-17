@@ -4,6 +4,11 @@
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6">Checkout</h1>
 
+        @if (session('message'))
+            <div class="bg-red-100 text-red-800 p-4 mb-4 rounded-md">
+                {{ session('message') }}
+            </div>
+        @endif
         @if(session('cart_quantity') && session('cart_quantity') > 0)
             <div class="mb-6">
                 <h2 class="text-2xl font-semibold">Your Cart</h2>

@@ -50,6 +50,10 @@ class CartController extends Controller
         session(['cart' => $cart]);
         session(['cart_quantity' => array_sum(array_column($cart, 'quantity'))]);
 
+        if (session('cart_quantity') == 0) {
+            return redirect()->route('products.index')->with('message', 'Your cart is empty.');
+        }
+
         return redirect()->route('cart.show');
     }
 
@@ -128,11 +132,14 @@ class CartController extends Controller
 
         session()->forget('cart');
         session()->forget('cart_quantity');
-        Mail::to($order->customer_email)->send(new OrderConfirmation($order, 'customer'));
+
+        $orderProducts = $order->products;
+
+        Mail::to($order->customer_email)->send(new OrderConfirmation($order, $orderProducts, 'customer'));
 
         $users = User::all();
         foreach ($users as $user) {
-            Mail::to($user->email)->send(new OrderConfirmation($order, 'admin'));
+            Mail::to($user->email)->send(new OrderConfirmation($order, $orderProducts, 'admin'));
         }
 
         return redirect()->route('cart.checkout')->with('success', 'Your order has been placed successfully!');
