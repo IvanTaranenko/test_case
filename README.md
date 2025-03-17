@@ -73,7 +73,7 @@ Password: adminadmin
 
 
 TODO:: 
-redirect after checkout 
-user can decrease to 0 and should back to main page
-session messages
-job message
+redirect after checkout ,
+user can decrease to 0 and should back to main page,
+session messages,
+jobs
